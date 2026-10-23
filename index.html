@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meu Inglês</title>
+<meta name="theme-color" content="#1e3a8a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Meu Inglês">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png">
+<style>
+:root{
+  --fs:19px;
+  --bg:#f6f4ef; --card:#ffffff; --ink:#111827; --ink2:#4b5563; --line:#d6d3cc;
+  --pri:#1e40af; --pri-ink:#ffffff; --pri-soft:#e0e7ff;
+  --ok:#15803d; --ok-soft:#dcfce7; --bad:#b91c1c; --bad-soft:#fee2e2; --warn:#a16207; --warn-soft:#fef3c7;
+  --mic:#dc2626; --r:18px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f172a; --card:#1e293b; --ink:#f1f5f9; --ink2:#cbd5e1; --line:#334155;
+    --pri:#93c5fd; --pri-ink:#0f172a; --pri-soft:#1e3a5f;
+    --ok:#4ade80; --ok-soft:#14532d; --bad:#fca5a5; --bad-soft:#7f1d1d; --warn:#fcd34d; --warn-soft:#713f12; --mic:#f87171;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f172a; --card:#1e293b; --ink:#f1f5f9; --ink2:#cbd5e1; --line:#334155;
+  --pri:#93c5fd; --pri-ink:#0f172a; --pri-soft:#1e3a5f;
+  --ok:#4ade80; --ok-soft:#14532d; --bad:#fca5a5; --bad-soft:#7f1d1d; --warn:#fcd34d; --warn-soft:#713f12; --mic:#f87171;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:var(--fs)/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+body{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+button{font:inherit;color:inherit}
+header.top{position:sticky;top:0;z-index:5;background:var(--bg);padding:calc(8px + env(safe-area-inset-top)) 14px 8px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line)}
+header.top h1{flex:1;font-size:1.05em;margin:0;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hbtn{min-width:96px;min-height:48px;border:2px solid var(--line);background:var(--card);border-radius:14px;font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center;gap:4px;padding:0 10px}
+.hbtn.ghost{visibility:hidden}
+main{max-width:640px;margin:0 auto;padding:14px 14px 30px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:0 0 14px}
+.big{font-size:1.5em;font-weight:800;line-height:1.25}
+.en{font-size:1.45em;font-weight:800;line-height:1.3}
+.pt{color:var(--ink2);font-size:1em}
+.muted{color:var(--ink2);font-size:.85em}
+h2{font-size:1em;margin:18px 4px 10px;color:var(--ink2)}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;border-radius:16px;border:2px solid var(--line);background:var(--card);font-weight:800;font-size:1em;padding:10px 14px;margin:0 0 12px;text-align:center}
+.btn.pri{background:var(--pri);border-color:var(--pri);color:var(--pri-ink)}
+.btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.btn.soft{background:var(--pri-soft);border-color:var(--pri-soft)}
+.btn.sm{min-height:52px;font-size:.9em;margin:0}
+.btn .ico{font-size:1.4em;line-height:1}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.menu .btn{justify-content:flex-start;text-align:left;min-height:84px;font-size:1.05em}
+.menu .btn .ico{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--pri-soft);flex:0 0 46px}
+.menu .btn small{display:block;font-weight:500;color:var(--ink2);font-size:.78em;margin-top:2px}
+.lesson{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px;margin:0 0 10px;min-height:78px}
+.lesson .num{flex:0 0 52px;height:52px;border-radius:14px;background:var(--pri);color:var(--pri-ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.05em}
+.lesson .num.d{background:var(--warn)}
+.lesson b{display:block;line-height:1.25}
+.lesson .muted{display:block}
+.prog{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:6px}.prog>i{display:block;height:100%;background:var(--ok)}
+.mic{width:120px;height:120px;border-radius:50%;border:none;background:var(--mic);color:#fff;font-size:3em;display:flex;align-items:center;justify-content:center;margin:6px auto 6px;box-shadow:0 6px 18px rgba(220,38,38,.35)}
+.mic.on{animation:pulse 1.1s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(220,38,38,.55)}70%{box-shadow:0 0 0 22px rgba(220,38,38,0)}100%{box-shadow:0 0 0 0 rgba(220,38,38,0)}}
+.miclbl{text-align:center;font-weight:700;margin-bottom:10px}
+.word{display:inline-block;padding:1px 4px;border-radius:6px;margin:1px}
+.word.ok{background:var(--ok-soft);color:var(--ok)}.word.bad{background:var(--bad-soft);color:var(--bad);text-decoration:underline}
+.res{border-radius:16px;padding:14px;margin:12px 0;font-size:1em}
+.res.ok{background:var(--ok-soft)}.res.bad{background:var(--bad-soft)}.res.warn{background:var(--warn-soft)}.res.info{background:var(--pri-soft)}
+.res b.t{display:block;font-size:1.15em;margin-bottom:4px}
+textarea,input[type=text],input[type=password]{width:100%;font:inherit;font-size:1em;padding:14px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+.opt{display:block;width:100%;text-align:left;min-height:64px;border-radius:16px;border:2px solid var(--line);background:var(--card);padding:12px 16px;margin:0 0 10px;font-weight:700}
+.opt.ok{border-color:var(--ok);background:var(--ok-soft)}.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.step{display:flex;justify-content:space-between;align-items:center;margin:0 4px 10px;color:var(--ink2);font-weight:700;font-size:.9em}
+.chat{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.msg{max-width:88%;padding:12px 14px;border-radius:18px;font-size:1em}
+.msg.me{align-self:flex-end;background:var(--pri);color:var(--pri-ink);border-bottom-right-radius:6px}
+.msg.ai{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:6px}
+.msg .ptx:first-child{border-top:none;margin-top:0;padding-top:0}
+.msg .ptx{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--ink2);font-size:.92em}
+.msg .fix{display:block;margin-top:8px;color:var(--ok);font-weight:700}
+.msg .say{margin-top:8px;border:1px solid var(--line);background:transparent;border-radius:10px;padding:6px 10px;font-size:.85em;font-weight:700}
+.bul{margin:0;padding-left:0;list-style:none}.bul li{padding:12px 0;border-top:1px solid var(--line)}.bul li:first-child{border-top:none}
+.toast{position:fixed;left:50%;bottom:calc(30px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:14px;z-index:50;font-weight:700;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center}
+.toast.show{opacity:1}
+.loading{display:flex;gap:6px;justify-content:center;padding:10px}.loading i{width:12px;height:12px;border-radius:50%;background:var(--pri);animation:bl 1s infinite}.loading i:nth-child(2){animation-delay:.2s}.loading i:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,100%{opacity:.25}50%{opacity:1}}
+.seg{display:flex;background:var(--line);padding:4px;border-radius:14px;gap:4px;margin-bottom:12px}.seg button{flex:1;border:none;background:none;min-height:48px;border-radius:11px;font-weight:800}.seg button.on{background:var(--card)}
+.reading{white-space:pre-wrap;font-size:1em;line-height:1.6}
+.ex{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}.ex:first-child{border-top:none}
+.ex button{flex:0 0 52px;height:52px;border-radius:12px;border:2px solid var(--line);background:var(--pri-soft);font-size:1.3em}
+.hide{display:none!important}
+.small-note{font-size:.8em;color:var(--ink2);text-align:center;margin-top:6px}
+ol.steps{padding-left:22px}ol.steps li{margin-bottom:10px}
+a{color:var(--pri)}
+.velbar{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 8px;margin:0 0 12px}
+.velbar span{font-weight:800;font-size:.8em;white-space:nowrap;padding:0 2px}
+.velbar button{flex:1;min-height:44px;border-radius:10px;border:2px solid var(--line);background:var(--bg);font-weight:800;font-size:.85em;padding:0 2px}
+.velbar button.on{background:var(--pri);border-color:var(--pri);color:var(--pri-ink)}
+b.hl{background:var(--pri-soft);color:var(--ink);padding:0 4px;border-radius:6px;font-weight:800;white-space:nowrap}
+.did p{margin:0 0 12px;line-height:1.55}
+.did .par{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}.did .par:first-child{border-top:none;padding-top:0}
+.did .par button,.exd button{flex:0 0 46px;height:46px;border-radius:12px;border:2px solid var(--line);background:var(--pri-soft);font-size:1.15em}
+.exd{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0 0;display:flex;gap:10px;align-items:flex-start}
+.exd .e1{font-weight:800;font-size:1.15em;line-height:1.3}
+.exd .e3,.exd .e4{font-size:.85em;color:var(--ink2);margin-top:4px}
+.lem{background:var(--warn-soft);border-radius:16px;padding:14px;margin:12px 0}
+.lem b.t{display:block;font-size:1.1em;margin-bottom:6px}
+.lem ul{margin:8px 0;padding-left:20px}.lem li{margin-bottom:6px}
+.dots{display:flex;gap:6px;justify-content:center;margin:4px 0 12px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}.dots i.on{background:var(--pri)}
+</style>
+</head>
+<body>
+<header class="top"><button class="hbtn" id="backBtn">◀ Voltar</button><h1 id="ttl">Meu Inglês</h1><button class="hbtn" id="homeBtn">🏠 Início</button></header>
+<main id="view"></main>
+<div class="toast" id="toast"></div>
+<input type="file" id="fileIn" hidden>
+<script src="aulas.js"></script>
+<script>
+'use strict';
+/* =================== ESTADO =================== */
+const KEY='meuIngles.v1';
+let S;
+function load(){try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}
+  S.prog=S.prog||{}; S.cfg=Object.assign({nome:'',chave:'',modelo:'',vel:0.75,fonte:19,modoVoz:'auto',tema:'auto',tutorial:false},S.cfg||{}); S.chats=S.chats||{};
+  if(![0.5,0.75,1,1.25].includes(+S.cfg.vel))S.cfg.vel=0.75;}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+load();
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(t,ms){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('show'),ms||2200)}
+function applyCfg(){document.documentElement.style.setProperty('--fs',S.cfg.fonte+'px');if(S.cfg.tema==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',S.cfg.tema)}
+applyCfg();
+const L=id=>LESSONS.find(l=>l.id===String(id));
+const nomeAula=l=>l.id.startsWith('D')?'Desafio '+l.id.slice(1):l.id.startsWith('P')?'Projeto '+l.id.slice(1):'Lição '+l.id;
+const numAula=l=>l.id.startsWith('D')?'★':l.id.startsWith('P')?'P':l.id;
+
+/* =================== VOZ (falar) =================== */
+let VOZES=[];
+function carregarVozes(){VOZES=speechSynthesis.getVoices?speechSynthesis.getVoices():[]}
+if('speechSynthesis' in window){carregarVozes();speechSynthesis.onvoiceschanged=carregarVozes}
+function melhorVoz(lang){
+  const pref=lang==='en'?['Samantha','Ava','Allison','Karen','Daniel','Google US English','Microsoft Aria','Microsoft Jenny']:['Luciana','Felipe','Fernanda','Google português do Brasil','Microsoft Francisca'];
+  const cand=VOZES.filter(v=>lang==='en'?/^en(-|_)?(US|GB)?/i.test(v.lang):/^pt(-|_)?BR/i.test(v.lang));
+  const ench=cand.filter(v=>/enhanced|premium|natural|neural/i.test(v.name));
+  for(const p of pref){const v=ench.find(v=>v.name.includes(p))||cand.find(v=>v.name.includes(p));if(v)return v}
+  return ench[0]||cand.find(v=>/US/i.test(v.lang))||cand[0]||null;
+}
+let falando=false;
+function falar(partes,opts){ // partes: [{t,lang}] ou string em inglês
+  if(!('speechSynthesis' in window))return Promise.resolve();
+  if(typeof partes==='string')partes=[{t:partes,lang:'en'}];
+  speechSynthesis.cancel();
+  return new Promise(res=>{
+    let i=0;falando=true;
+    const prox=()=>{if(i>=partes.length){falando=false;return res()}
+      const p=partes[i++];if(!p.t||!p.t.trim())return prox();
+      const u=new SpeechSynthesisUtterance(p.t.replace(/[*_#]/g,''));
+      const v=melhorVoz(p.lang);if(v)u.voice=v;u.lang=p.lang==='en'?'en-US':'pt-BR';
+      let r=+S.cfg.vel||1;if(p.lang!=='en')r=Math.min(1.25,Math.max(0.75,r));if(opts&&opts.devagar)r=Math.max(0.4,r-0.25);
+      u.rate=r;
+      u.onend=prox;u.onerror=prox;speechSynthesis.speak(u)};
+    prox();
+  });
+}
+function pararFala(){if('speechSynthesis' in window)speechSynthesis.cancel();falando=false}
+/* ---- controle de velocidade (aparece nas telas com áudio) ---- */
+const VELS=[0.5,0.75,1,1.25];
+function velBar(){return `<div class="velbar"><span>🐢 Velocidade</span>${VELS.map(v=>`<button data-vel="${v}" class="${+S.cfg.vel===v?'on':''}">${String(v).replace('.',',')}x</button>`).join('')}</div>`}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-vel]');if(!b)return;S.cfg.vel=+b.dataset.vel;save();
+  document.querySelectorAll('[data-vel]').forEach(x=>x.classList.toggle('on',+x.dataset.vel===S.cfg.vel));
+  toast('Velocidade '+b.textContent);falar([{t:'Hello! How are you?',lang:'en'}])});
+/* ---- textos didáticos: [[inglês]] fica destacado e é lido com voz em inglês ---- */
+const didHTML=t=>esc(t).replace(/\[\[(.+?)\]\]/g,'<b class="hl">$1</b>');
+const semMarca=t=>String(t||'').replace(/\[\[(.+?)\]\]/g,'$1');
+function partesDid(t){const out=[];String(t||'').split(/(\[\[.+?\]\])/).forEach(s=>{if(!s)return;const m=s.match(/^\[\[(.+)\]\]$/);
+  if(m)out.push({t:m[1],lang:'en'});else{const c=s.replace(/[“”"()]/g,' ').replace(/→/g,', ').replace(/\s+/g,' ');if(c.trim()&&/[a-zA-ZÀ-ú0-9]/.test(c))out.push({t:c,lang:'pt'})}});return out}
+const falarDid=(t,o)=>falar(partesDid(t),o);
+const DID=id=>(window.DIDATICA||{})[id]||null;
+function lembreteDe(id,ai){const d=DID(id);if(!d)return null;return (d.atv&&ai!=null&&d.atv[String(ai)])||d.lembrete||null}
+function lembreteHTML(lm,titulo){if(!lm)return '';return `<div class="lem"><b class="t">📘 ${titulo||'Vamos relembrar a regra'}</b><div>${didHTML(lm.regra)}</div>
+  ${lm.formula&&lm.formula.length?`<div style="margin-top:8px;font-weight:800">Como montar a frase:</div><ul>${lm.formula.map(f=>`<li>${didHTML(f)}</li>`).join('')}</ul>`:''}
+  ${lm.ex?`<div class="exd"><button class="lemEx" aria-label="Ouvir">🔊</button><div><div class="e1">${esc(lm.ex[0])}</div><div class="pt">${esc(lm.ex[1])}</div></div></div>`:''}
+  <button class="btn sm soft lemOuv" style="margin-top:10px">🔊 Ouvir a regra</button></div>`}
+function ligarLembrete(lm,raiz){(raiz||document).querySelectorAll('.lemEx').forEach(b=>b.onclick=()=>falar(lm.ex[0]));
+  (raiz||document).querySelectorAll('.lemOuv').forEach(b=>b.onclick=()=>falarLembrete(lm))}
+function falarLembrete(lm){const p=partesDid(lm.regra);(lm.formula||[]).forEach(f=>p.push(...partesDid(f)));if(lm.ex)p.push({t:'Exemplo:',lang:'pt'},{t:lm.ex[0],lang:'en'},{t:lm.ex[1],lang:'pt'});falar(p)}
+// iOS: liberar a voz no primeiro toque
+document.addEventListener('touchend',function unlock(){try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u)}catch(e){}document.removeEventListener('touchend',unlock)},{once:true});
+
+/* =================== OUVIR (microfone) =================== */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+function modoVoz(){if(S.cfg.modoVoz==='ia')return 'ia';if(S.cfg.modoVoz==='local')return SR?'local':'ia';return SR?'local':'ia'}
+let micAtivo=null;
+// ouvir({lang, onParcial}) -> Promise<{texto, audio?}>
+function ouvir(opts){
+  opts=opts||{};pararFala();
+  if(modoVoz()==='local')return ouvirLocal(opts);
+  return gravarAudio(opts);
+}
+function ouvirLocal(opts){
+  return new Promise((resolve,reject)=>{
+    const r=new SR();r.lang=opts.lang==='pt'?'pt-BR':'en-US';r.interimResults=true;r.continuous=false;r.maxAlternatives=1;
+    let final='',parcial='';
+    r.onresult=e=>{parcial='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;if(e.results[i].isFinal)final+=t;else parcial+=t}
+      if(opts.onParcial)opts.onParcial((final+' '+parcial).trim())};
+    r.onerror=e=>{micAtivo=null;if(e.error==='no-speech')resolve({texto:''});else if(e.error==='not-allowed'||e.error==='service-not-allowed'){reject(new Error('mic'))}else resolve({texto:(final||parcial).trim()})};
+    r.onend=()=>{micAtivo=null;resolve({texto:(final||parcial).trim()})};
+    micAtivo={parar:()=>{try{r.stop()}catch(e){}}};
+    try{r.start()}catch(e){reject(e)}
+  });
+}
+// Plano B: grava áudio em WAV (funciona em qualquer iPhone) e manda para a IA
+async function gravarAudio(opts){
+  if(!temChave())throw new Error('semchave');
+  const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}});
+  const AC=window.AudioContext||window.webkitAudioContext;const ctx=new AC();
+  const src=ctx.createMediaStreamSource(stream);const proc=ctx.createScriptProcessor(4096,1,1);
+  const bufs=[];let silencio=0,falou=false;const t0=Date.now();
+  return new Promise((resolve)=>{
+    const fim=async()=>{try{proc.disconnect();src.disconnect();stream.getTracks().forEach(t=>t.stop());await ctx.close()}catch(e){}
+      micAtivo=null;const wav=paraWav(bufs,ctx.sampleRate);resolve({texto:null,audio:wav})};
+    proc.onaudioprocess=e=>{const d=e.inputBuffer.getChannelData(0);bufs.push(new Float32Array(d));
+      let s=0;for(let i=0;i<d.length;i+=8)s+=Math.abs(d[i]);s/=d.length/8;
+      if(s>0.02){falou=true;silencio=0}else silencio+=d.length/ctx.sampleRate;
+      if((falou&&silencio>1.8)||Date.now()-t0>30000){proc.onaudioprocess=null;fim()}};
+    src.connect(proc);proc.connect(ctx.destination);
+    micAtivo={parar:()=>{proc.onaudioprocess=null;fim()}};
+  });
+}
+function paraWav(bufs,rate){
+  const alvo=16000;let len=bufs.reduce((s,b)=>s+b.length,0);const dados=new Float32Array(len);let o=0;for(const b of bufs){dados.set(b,o);o+=b.length}
+  const fator=rate/alvo;const n=Math.floor(len/fator);const pcm=new Int16Array(n);
+  for(let i=0;i<n;i++){const v=Math.max(-1,Math.min(1,dados[Math.floor(i*fator)]));pcm[i]=v<0?v*0x8000:v*0x7fff}
+  const buf=new ArrayBuffer(44+pcm.length*2);const dv=new DataView(buf);const w=(p,s)=>{for(let i=0;i<s.length;i++)dv.setUint8(p+i,s.charCodeAt(i))};
+  w(0,'RIFF');dv.setUint32(4,36+pcm.length*2,true);w(8,'WAVE');w(12,'fmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);dv.setUint16(22,1,true);
+  dv.setUint32(24,alvo,true);dv.setUint32(28,alvo*2,true);dv.setUint16(32,2,true);dv.setUint16(34,16,true);w(36,'data');dv.setUint32(40,pcm.length*2,true);
+  new Int16Array(buf,44).set(pcm);
+  let bin='';const by=new Uint8Array(buf);for(let i=0;i<by.length;i+=0x8000)bin+=String.fromCharCode.apply(null,by.subarray(i,i+0x8000));return btoa(bin);
+}
+async function transcrever(audio,lang){
+  const r=await ia({contents:[{role:'user',parts:[{inline_data:{mime_type:'audio/wav',data:audio}},{text:'Transcreva exatamente o que a pessoa falou neste áudio ('+(lang==='pt'?'português':'inglês, ou português se ela falar português')+'). Responda somente com a transcrição, sem comentários. Se não houver fala, responda vazio.'}]}],temp:0});
+  return (r||'').trim().replace(/^"|"$/g,'');
+}
+// Componente de microfone padrão
+function micHTML(id,lbl){return `<button class="mic" id="${id}" aria-label="Falar">🎤</button><div class="miclbl" id="${id}L">${lbl||'Toque no microfone e fale'}</div>`}
+async function usarMic(id,opts){ // retorna texto (ou {texto,audio} se opts.querAudio)
+  const b=$('#'+id),lb=$('#'+id+'L');
+  if(micAtivo){micAtivo.parar();return null}
+  b.classList.add('on');b.textContent='⏹';lb.textContent='Estou ouvindo… fale agora. Toque de novo para parar.';
+  try{
+    const r=await ouvir({lang:opts&&opts.lang,onParcial:t=>{lb.textContent='“'+t+'”'}});
+    b.classList.remove('on');b.textContent='🎤';
+    if(r.audio&&!(opts&&opts.querAudio)){lb.innerHTML='Entendendo o que você disse… <span class="loading"><i></i><i></i><i></i></span>';r.texto=await transcrever(r.audio,opts&&opts.lang)}
+    lb.textContent=r.texto?'Você disse: “'+r.texto+'”':(r.audio?'Áudio gravado.':'Não ouvi nada. Toque e tente de novo.');
+    return (opts&&opts.querAudio)?r:r.texto;
+  }catch(e){b.classList.remove('on');b.textContent='🎤';
+    if(e.message==='mic'){lb.textContent='O microfone está bloqueado.';avisoMic()}
+    else if(e.message==='semchave'){lb.textContent='Para usar a voz neste aparelho, cadastre a chave da IA em Ajustes.'}
+    else{lb.textContent='Não consegui ouvir. Tente de novo.';console.warn(e)}
+    return null}
+}
+function avisoMic(){toast('Libere o microfone: Ajustes do iPhone › Safari › Microfone › Permitir',5000)}
+
+/* =================== IA (Gemini) =================== */
+const temChave=()=>!!S.cfg.chave;
+const MODELOS_PADRAO=['gemini-3.8-flash','gemini-3.6-flash','gemini-3.5-flash-lite','gemini-2.5-flash','gemini-flash-latest'];
+async function escolherModelo(chave){
+  const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key='+encodeURIComponent(chave));
+  if(!r.ok){const t=await r.text();throw new Error(r.status===400||r.status===403?'chave':'rede:'+t.slice(0,120))}
+  const j=await r.json();const nomes=(j.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes('generateContent')).map(m=>m.name.replace('models/',''));
+  const ok=nomes.filter(n=>/^gemini-[\d.]+-flash(-lite)?$/.test(n));
+  const ver=n=>parseFloat(n.split('-')[1])||0;
+  ok.sort((a,b)=>(b.includes('lite')?0:1)-(a.includes('lite')?0:1)||ver(b)-ver(a));
+  return ok[0]||nomes.find(n=>/flash/.test(n)&&!/preview|exp|tts|image|live|audio|embedding/.test(n))||MODELOS_PADRAO[0];
+}
+async function ia({system,contents,json,temp}){
+  if(!temChave())throw new Error('semchave');
+  const lista=[S.cfg.modelo,...MODELOS_PADRAO].filter((v,i,a)=>v&&a.indexOf(v)===i);
+  let ultimoErro;
+  for(const modelo of lista){
+    const body={contents,generationConfig:{temperature:temp??0.6}};
+    if(system)body.system_instruction={parts:[{text:system}]};
+    if(json)body.generationConfig.responseMimeType='application/json';
+    let r;
+    try{r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+modelo+':generateContent',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':S.cfg.chave},body:JSON.stringify(body)})}
+    catch(e){throw new Error('rede')}
+    if(r.status===404){ultimoErro='modelo';continue}
+    if(r.status===429)throw new Error('limite');
+    if(r.status===400||r.status===403){const t=await r.text();if(/API key|API_KEY|permission/i.test(t))throw new Error('chave');ultimoErro='req:'+t.slice(0,200);continue}
+    if(!r.ok){ultimoErro='http'+r.status;continue}
+    const j=await r.json();
+    if(modelo!==S.cfg.modelo){S.cfg.modelo=modelo;save()}
+    const txt=(((j.candidates||[])[0]||{}).content||{}).parts?.map(p=>p.text||'').join('')||'';
+    if(json){try{return JSON.parse(txt.replace(/^```(json)?|```$/g,'').trim())}catch(e){return {pt:txt,en:''}}}
+    return txt;
+  }
+  throw new Error(ultimoErro||'erro');
+}
+function msgErroIA(e){const m=e&&e.message||'';
+  if(m==='semchave')return 'Para usar o professor com IA, cadastre a chave grátis em Ajustes (leva 5 minutos).';
+  if(m==='limite')return 'O limite grátis de hoje acabou. Os exercícios com resposta pronta continuam funcionando. Tente a IA amanhã.';
+  if(m==='chave')return 'A chave da IA parece inválida. Confira em Ajustes.';
+  if(m==='rede')return 'Sem internet no momento. Verifique o Wi-Fi ou os dados móveis.';
+  return 'A IA não respondeu agora. Tente de novo em instantes.'}
+
+function contextoAula(l){
+  const t=(window.LESSON_TEXT||{})[l.id]||'';
+  const d=DID(l.id);const regra=d&&d.lembrete?`REGRA PRINCIPAL: ${semMarca(d.lembrete.regra)}\nCOMO MONTAR: ${d.lembrete.formula.map(semMarca).join(' | ')}\nPONTOS DA EXPLICAÇÃO DIDÁTICA: ${d.partes.map(p=>p.t).join(' | ')}\n`:'';
+  return `AULA: ${nomeAula(l)} — ${l.titulo} (${l.tituloPt})\nOBJETIVO: ${l.objetivo}\n${regra}EXPLICAÇÃO DA AULA:\n- ${l.explicacao.join('\n- ')}\nFRASES-EXEMPLO:\n${l.exemplos.map(e=>e[0]+' = '+e[1]).join('\n')}\nVOCABULÁRIO:\n${l.vocab.map(v=>v[0]+' = '+v[1]).join('; ')}\nMATERIAL ORIGINAL DO PDF (trecho):\n${t.slice(0,7000)}`;
+}
+const SYS_DIDATICO=`Você é um professor de inglês brasileiro, muito paciente e didático. Seu aluno é iniciante, pode ser idoso e NÃO SABE NADA de inglês.
+COMO EXPLICAR (sempre):
+- Dê CONTEXTO antes da regra: para que serve aquilo, em que situação real se usa.
+- Compare com o português ("em português dizemos X; em inglês...").
+- Explique a montagem da frase em passos pequenos, pedaço por pedaço, dizendo o significado de cada palavra.
+- Mostre como as palavras soam, escrito à brasileira (ex.: "would" soa "uúd").
+- Sem termos técnicos; se precisar de um, explique em palavras simples.
+- Tom acolhedor e encorajador. Nada de respostas secas ou diretas demais.
+- Sempre que escrever uma palavra ou frase em inglês no meio do texto em português, coloque-a entre [[ ]] (ex.: [[I am]]). Isso é usado para ler com a voz em inglês.
+`;
+const quem=()=>S.cfg.nome?('O aluno se chama '+S.cfg.nome+'. '):'';
+
+/* =================== COMPARAÇÃO DE TEXTO =================== */
+const CONTR={"i'm":"i am","you're":"you are","we're":"we are","they're":"they are","he's":"he is","she's":"she is","it's":"it is","that's":"that is","what's":"what is","where's":"where is","who's":"who is","there's":"there is","how's":"how is","let's":"let us","i've":"i have","you've":"you have","we've":"we have","i'd":"i would","you'd":"you would","he'd":"he would","she'd":"she would","we'd":"we would","they'd":"they would","i'll":"i will","you'll":"you will","he'll":"he will","she'll":"she will","it'll":"it will","we'll":"we will","they'll":"they will","don't":"do not","doesn't":"does not","didn't":"did not","won't":"will not","can't":"can not","cannot":"can not","wouldn't":"would not","isn't":"is not","aren't":"are not","wasn't":"was not","weren't":"were not","haven't":"have not","hasn't":"has not","couldn't":"could not","shouldn't":"should not","o'clock":"oclock"};
+const UN=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'],DZ=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+function numPal(n){n=+n;if(n<20)return UN[n];if(n<100)return DZ[Math.floor(n/10)]+(n%10?' '+UN[n%10]:'');if(n<1000)return UN[Math.floor(n/100)]+' hundred'+(n%100?' '+numPal(n%100):'');if(n<1000000)return numPal(Math.floor(n/1000))+' thousand'+(n%1000?' '+numPal(n%1000):'');return String(n)}
+function norm(s){s=String(s||'').toLowerCase().replace(/[’‘`´]/g,"'").replace(/\b(a\.m\.|p\.m\.)/g,m=>m.replace(/\./g,'')).replace(/(\d+):(\d\d)/g,(m,h,mi)=>numPal(h)+' '+(mi==='00'?'':(mi[0]==='0'?'oh '+numPal(mi[1]):numPal(mi))))
+  .replace(/(\d+)(st|nd|rd|th)\b/g,'$1').replace(/\$\s?(\d+)/g,'$1 dollars').replace(/\d+/g,m=>m.length<7?numPal(m):m).replace(/-/g,' ');
+  return s.split(/\s+/).map(w=>w.replace(/^[^a-z']+|[^a-z']+$/g,'')).filter(Boolean).map(w=>CONTR[w]||w.replace(/'s$/,'s').replace(/'/g,'')).join(' ').split(' ').filter(Boolean)}
+function lev(a,b){if(a===b)return 0;const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let p=Array(n+1).fill(0).map((_,i)=>i);for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[n]}
+const parecidas=(a,b)=>a===b||(Math.max(a.length,b.length)>3&&1-lev(a,b)/Math.max(a.length,b.length)>=0.75);
+// alinha alvo x dito; retorna {marcas:[bool por palavra do alvo], nota 0-100}
+function alinhar(alvo,dito){const A=norm(alvo),B=norm(dito);const m=A.length,n=B.length;const d=Array(m+1).fill(0).map(()=>Array(n+1).fill(0));
+  for(let i=m-1;i>=0;i--)for(let j=n-1;j>=0;j--)d[i][j]=parecidas(A[i],B[j])?1+d[i+1][j+1]:Math.max(d[i+1][j],d[i][j+1]);
+  const marcas=Array(m).fill(false);let i=0,j=0;while(i<m&&j<n){if(parecidas(A[i],B[j])){marcas[i]=true;i++;j++}else if(d[i+1][j]>=d[i][j+1])i++;else j++}
+  const lcs=d[0][0];const nota=m+n?Math.round(200*lcs/(m+n)):0;return{A,marcas,nota,recall:m?lcs/m:0}}
+function palavrasColoridas(alvo,marcas){const ws=alvo.split(/\s+/);let k=0;const An=norm(alvo);
+  // mapeia palavras originais às normalizadas de forma simples
+  return ws.map(w=>{const nn=norm(w);let ok=true;for(let t=0;t<nn.length;t++){if(marcas[k]===false)ok=false;k++}return `<span class="word ${nn.length?(ok?'ok':'bad'):''}">${esc(w)}</span>`}).join(' ')}
+
+/* =================== PROGRESSO =================== */
+function prog(lid){return S.prog[lid]||(S.prog[lid]={})}
+function marcar(lid,ai,ii,nota){const p=prog(lid);p[ai]=p[ai]||{};p[ai][ii]=Math.max(p[ai][ii]||0,nota);S.ultima=lid;save()}
+function pctAtiv(l,ai){const p=(S.prog[l.id]||{})[ai]||{};const n=l.atividades[ai].itens.length;return n?Object.keys(p).length/n:0}
+function pctAula(l){let f=0,t=0;l.atividades.forEach((a,ai)=>{t+=a.itens.length;f+=Object.keys(((S.prog[l.id]||{})[ai])||{}).length});return t?f/t:0}
+
+/* =================== NAVEGAÇÃO =================== */
+let pilha=[];
+function ir(fn,...args){pararFala();if(micAtivo)micAtivo.parar();pilha.push([fn,args]);fn(...args);window.scrollTo(0,0);atualizarTopo()}
+function voltar(){pararFala();if(micAtivo)micAtivo.parar();if(pilha.length>1){pilha.pop();const [fn,args]=pilha[pilha.length-1];fn(...args);window.scrollTo(0,0)}atualizarTopo()}
+function inicio(){pilha=[];ir(telaInicio)}
+function atualizarTopo(){$('#backBtn').classList.toggle('ghost',pilha.length<=1)}
+$('#backBtn').onclick=voltar;$('#homeBtn').onclick=inicio;
+const V=()=>$('#view');
+function titulo(t){$('#ttl').textContent=t}
+
+/* =================== TELAS =================== */
+function telaInicio(){
+  titulo('Meu Inglês');
+  const ult=S.ultima&&L(S.ultima);
+  V().innerHTML=`
+  ${!S.cfg.tutorial?`<div class="card" style="background:var(--pri-soft)"><div class="big">Bem-vindo${S.cfg.nome?', '+esc(S.cfg.nome):''}! 👋</div><p>Este app ajuda você a estudar as aulas de inglês: ouvir, repetir, fazer os exercícios e conversar com um professor.</p><button class="btn pri" id="tut">Ver como usar (1 minuto)</button></div>`:''}
+  ${ult?`<button class="btn pri" id="cont" style="min-height:80px"><span class="ico">▶️</span><span>Continuar: ${esc(nomeAula(ult))}<br><small style="font-weight:600">${esc(ult.tituloPt)}</small></span></button>`:''}
+  <h2>Escolha a aula</h2>
+  <div id="lst">${LESSONS.map(l=>{const p=Math.round(pctAula(l)*100);return `<button class="lesson" data-l="${l.id}"><span class="num ${/^[DP]/.test(l.id)?'d':''}">${numAula(l)}</span><span style="flex:1"><b>${esc(nomeAula(l))}: ${esc(l.tituloPt)}</b><span class="muted">${esc(l.titulo)}</span><span class="prog"><i style="width:${p}%"></i></span></span></button>`}).join('')}</div>
+  <button class="btn" id="cfg"><span class="ico">⚙️</span> Ajustes (voz, letra, chave da IA)</button>`;
+  if($('#tut'))$('#tut').onclick=()=>ir(telaTutorial);
+  if($('#cont'))$('#cont').onclick=()=>ir(telaAula,ult.id);
+  V().querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>ir(telaAula,b.dataset.l));
+  $('#cfg').onclick=()=>ir(telaAjustes);
+}
+function telaTutorial(){
+  titulo('Como usar');
+  V().innerHTML=`<div class="card"><ol class="steps">
+   <li><b>Escolha a aula</b> na tela inicial, tocando no número dela.</li>
+   <li>Dentro da aula você tem 5 botões grandes:<br>📖 <b>Entender a aula</b> — explicação passo a passo.<br>🔊 <b>Ouvir e repetir</b> — treina a pronúncia.<br>✏️ <b>Exercícios</b> — as atividades do PDF, escrevendo ou falando.<br>💬 <b>Conversar com o professor</b> — conversa por voz sobre a aula.<br>❓ <b>Tirar uma dúvida</b> — pergunte em português.</li>
+   <li>Para falar, toque no <b>botão vermelho 🎤</b>. Ele pisca enquanto ouve. Fale e espere um pouco: ele para sozinho.</li>
+   <li>Na primeira vez o iPhone pergunta se pode usar o microfone: toque em <b>Permitir</b>.</li>
+   <li>Se travar em um exercício, toque em <b>🆘 Me ajude</b>: primeiro ele relembra a regra, depois dá uma dica e, por último, mostra a resposta explicando o porquê.</li>
+   <li>A voz está rápida? No alto das telas tem o controle <b>🐢 Velocidade</b>: 0,5x (bem devagar), 0,75x, 1x (normal) ou 1,25x.</li>
+   <li>Para voltar, use o botão <b>◀ Voltar</b> lá em cima. Para recomeçar, <b>🏠 Início</b>.</li></ol>
+   <button class="btn soft" id="ouv">🔊 Ouvir estas instruções</button>
+   <button class="btn pri" id="ok">Entendi!</button></div>`;
+  $('#ouv').onclick=()=>falar([{t:'Escolha a aula na tela inicial. Dentro da aula você tem cinco botões: entender a aula, ouvir e repetir, exercícios, conversar com o professor, e tirar uma dúvida. Para falar, toque no botão vermelho do microfone. Se travar, toque em me ajude.',lang:'pt'}]);
+  $('#ok').onclick=()=>{S.cfg.tutorial=true;save();inicio()};
+}
+function telaAula(id){
+  const l=L(id);S.ultima=l.id;save();titulo(nomeAula(l));
+  const p=Math.round(pctAula(l)*100);
+  V().innerHTML=`<div class="card"><div class="big">${esc(l.tituloPt)}</div><div class="muted">${esc(l.titulo)}</div><p style="margin:10px 0 0">🎯 ${esc(l.objetivo)}</p><div class="prog"><i style="width:${p}%"></i></div><div class="muted">${p}% dos exercícios feitos</div></div>
+  <div class="menu">
+   <button class="btn" id="b1"><span class="ico">📖</span><span>1. Entender a aula<small>Explicação passo a passo, com exemplos</small></span></button>
+   <button class="btn" id="b2"><span class="ico">🔊</span><span>2. Ouvir e repetir<small>Treine a pronúncia das frases e palavras</small></span></button>
+   <button class="btn" id="b3"><span class="ico">✏️</span><span>3. Exercícios da aula<small>Responda escrevendo ou falando</small></span></button>
+   <button class="btn" id="b4"><span class="ico">💬</span><span>4. Conversar com o professor<small>Conversa por voz sobre esta aula</small></span></button>
+   <button class="btn" id="b5"><span class="ico">❓</span><span>5. Tirar uma dúvida<small>Pergunte em português</small></span></button>
+  </div>`;
+  $('#b1').onclick=()=>ir(telaEntender,l.id);$('#b2').onclick=()=>ir(telaOuvir,l.id,'frases',0);$('#b3').onclick=()=>ir(telaExercicios,l.id);
+  $('#b4').onclick=()=>ir(telaChat,l.id,'conversa');$('#b5').onclick=()=>ir(telaChat,l.id,'duvida');
+}
+function telaEntender(id,pg){
+  const l=L(id);titulo('Entender a aula');const d=DID(l.id);
+  const partes=d?d.partes:[];const total=partes.length+1;pg=Math.max(0,Math.min(pg||0,total-1));
+  if(pg<partes.length){
+    const pt=partes[pg];
+    V().innerHTML=`${velBar()}<div class="step"><span>Parte ${pg+1} de ${total}</span><span>${esc(nomeAula(l))}</span></div>
+     <div class="dots">${Array.from({length:total},(_,k)=>`<i class="${k<=pg?'on':''}"></i>`).join('')}</div>
+     <div class="card did"><div class="big" style="font-size:1.25em;margin-bottom:12px">${esc(pt.t)}</div>
+      ${pt.p.map((p,k)=>`<div class="par"><button data-p="${k}" aria-label="Ouvir">🔊</button><div>${didHTML(p)}</div></div>`).join('')}
+      ${(pt.ex||[]).length?`<div style="margin-top:14px;font-weight:800">Exemplos explicados:</div>${pt.ex.map((e,k)=>`<div class="exd"><button data-xe="${k}" aria-label="Ouvir">🔊</button><div><div class="e1">${esc(e[0])}</div><div class="pt">${esc(e[1])}</div>${e[2]?`<div class="e3">🧩 Palavra por palavra: ${esc(e[2])}</div>`:''}${e[3]?`<div class="e4">👄 Soa mais ou menos como: “${esc(e[3])}”</div>`:''}</div></div>`).join('')}`:''}
+     </div>
+     <button class="btn soft" id="ouvTudo">🔊 Ouvir esta parte inteira</button>
+     <button class="btn" id="naoEnt">🤔 Não entendi — explique de outro jeito</button>
+     <div class="row"><button class="btn" id="ant" ${pg===0?'disabled style="opacity:.4"':''}>◀ Anterior</button><button class="btn pri" id="prx">Próxima parte ▶</button></div>`;
+    const go=n=>{pilha[pilha.length-1]=[telaEntender,[id,n]];pararFala();telaEntender(id,n);window.scrollTo(0,0)};
+    V().querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>falarDid(pt.p[+b.dataset.p]));
+    V().querySelectorAll('[data-xe]').forEach(b=>b.onclick=()=>{const e=pt.ex[+b.dataset.xe];falar([{t:e[0],lang:'en'},{t:e[1],lang:'pt'}])});
+    $('#ouvTudo').onclick=()=>{const p=partesDid(pt.t+'.');pt.p.forEach(x=>p.push(...partesDid(x)));(pt.ex||[]).forEach(e=>p.push({t:e[0],lang:'en'},{t:e[1],lang:'pt'}));falar(p)};
+    $('#naoEnt').onclick=()=>ir(telaChat,l.id,'duvida',`Não entendi esta parte da aula: "${pt.t}". O texto era: ${semMarca(pt.p.join(' '))} Me explique de outro jeito, com mais calma, como se eu não soubesse nada de inglês, com exemplos do dia a dia.`);
+    $('#ant').onclick=()=>pg>0&&go(pg-1);$('#prx').onclick=()=>go(pg+1);
+    return;
+  }
+  const lm=d&&d.lembrete;
+  V().innerHTML=`${velBar()}${partes.length?`<div class="step"><span>Parte ${total} de ${total}</span><span>Resumo da aula</span></div>`:''}
+   ${lm?lembreteHTML(lm,'A regra desta aula, resumida'):''}
+   <div class="card"><div class="big">${esc(l.tituloPt)}</div><p class="muted">Resumo do material da aula. Toque em 🔊 para ouvir cada ponto.</p>
+   <ul class="bul">${l.explicacao.map((e,i)=>`<li><div class="ex"><button data-e="${i}" aria-label="Ouvir">🔊</button><div>${esc(e).replace(/\b([A-Z][A-Z' ]{1,}[A-Z])\b/g,'<b>$1</b>')}</div></div></li>`).join('')}</ul></div>
+   ${l.leitura?`<div class="card"><div class="big" style="font-size:1.2em">📄 Texto: ${esc(l.leitura.titulo)}</div><button class="btn soft" id="lerT" style="margin-top:10px">🔊 Ouvir o texto</button><div class="reading">${esc(l.leitura.texto)}</div></div>`:''}
+   <h2>Exemplos (toque para ouvir)</h2>
+   <div class="card">${l.exemplos.map((e,i)=>`<div class="ex"><button data-x="${i}" aria-label="Ouvir">🔊</button><div><div style="font-weight:800">${esc(e[0])}</div><div class="pt">${esc(e[1])}</div></div></div>`).join('')}</div>
+   <button class="btn pri" id="mais">🤖 Explique de outro jeito, com mais exemplos</button>
+   ${partes.length?`<button class="btn" id="vIni">⏮ Ver a explicação desde o começo</button>`:''}
+   <button class="btn" id="pro">Próximo passo: Ouvir e repetir ▶</button>`;
+  if(lm)ligarLembrete(lm,V());
+  if($('#vIni'))$('#vIni').onclick=()=>{pilha[pilha.length-1]=[telaEntender,[id,0]];telaEntender(id,0);window.scrollTo(0,0)};
+  V().querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>falarMisto(l.explicacao[+b.dataset.e]));
+  V().querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>falar(l.exemplos[+b.dataset.x][0]));
+  if($('#lerT'))$('#lerT').onclick=()=>falar(l.leitura.texto);
+  $('#mais').onclick=()=>ir(telaChat,l.id,'duvida','Me explique esta aula de outro jeito, bem detalhado e com calma, passo a passo, com mais exemplos do dia a dia.');
+  $('#pro').onclick=()=>ir(telaOuvir,l.id,'frases',0);
+}
+// fala texto em português que contém palavras em inglês em MAIÚSCULAS
+function falarMisto(t){const partes=[];const re=/([A-Z][A-Z0-9' .,?!:\-]*[A-Z?!.])(?=[\s,.;:)]|$)/g;let last=0,m;
+  while((m=re.exec(t))){if(m.index>last)partes.push({t:t.slice(last,m.index),lang:'pt'});partes.push({t:m[1].toLowerCase(),lang:'en'});last=m.index+m[1].length}
+  if(last<t.length)partes.push({t:t.slice(last),lang:'pt'});falar(partes.map(p=>({t:p.t.replace(/[()]/g,' '),lang:p.lang})))}
+
+function telaOuvir(id,modo,idx){
+  const l=L(id);titulo('Ouvir e repetir');
+  const lista=modo==='vocab'?l.vocab:l.exemplos;idx=Math.max(0,Math.min(idx,lista.length-1));const it=lista[idx];
+  V().innerHTML=`${velBar()}<div class="seg"><button data-m="frases" class="${modo==='frases'?'on':''}">Frases</button><button data-m="vocab" class="${modo==='vocab'?'on':''}">Palavras</button></div>
+  <div class="step"><span>${idx+1} de ${lista.length}</span><span>${modo==='vocab'?'Vocabulário':'Frases da aula'}</span></div>
+  <div class="card" style="text-align:center"><div class="en" id="alvo">${esc(it[0])}</div><div class="pt" style="margin-top:6px">${esc(it[1])}</div>
+   <div class="row" style="margin-top:14px"><button class="btn soft sm" id="o1">🔊 Ouvir</button><button class="btn soft sm" id="o2">🐢 Devagar</button></div></div>
+  <div class="card" style="text-align:center">${micHTML('m1','Agora toque no microfone e repita')}<div id="res"></div></div>
+  <div class="row"><button class="btn" id="ant" ${idx===0?'disabled style="opacity:.4"':''}>◀ Anterior</button><button class="btn pri" id="prx">${idx===lista.length-1?'Concluir ✓':'Próxima ▶'}</button></div>`;
+  V().querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{pilha[pilha.length-1]=[telaOuvir,[id,b.dataset.m,0]];telaOuvir(id,b.dataset.m,0)});
+  $('#o1').onclick=()=>falar(it[0]);$('#o2').onclick=()=>falar(it[0],{devagar:true});
+  const go=n=>{pilha[pilha.length-1]=[telaOuvir,[id,modo,n]];telaOuvir(id,modo,n);window.scrollTo(0,0)};
+  $('#ant').onclick=()=>idx>0&&go(idx-1);
+  $('#prx').onclick=()=>{if(idx<lista.length-1)go(idx+1);else{toast('Muito bem! 👏');voltar()}};
+  setTimeout(()=>falar(it[0]),300);
+  $('#m1').onclick=async()=>{
+    const r=await usarMic('m1',{querAudio:modoVoz()==='ia'});if(!r)return;
+    if(r.audio){avaliarAudio(it[0],r.audio);return}
+    mostrarPronuncia(it[0],typeof r==='string'?r:r.texto);
+  };
+}
+function mostrarPronuncia(alvo,dito){
+  const a=alinhar(alvo,dito);const nota=Math.round(a.recall*100);
+  const cls=nota>=85?'ok':nota>=55?'warn':'bad';
+  const msg=nota>=85?'Excelente! Deu para entender tudo. 🎉':nota>=55?'Quase lá! Repita as palavras em vermelho.':'Vamos tentar de novo, mais devagar.';
+  $('#res').innerHTML=`<div class="res ${cls}"><b class="t">${msg}</b><div style="font-size:1.15em;margin:8px 0">${palavrasColoridas(alvo,a.marcas)}</div><div class="muted">Entendi: “${esc(dito)}” · acerto ${nota}%</div>
+   ${nota<100&&temChave()?'<button class="btn sm soft" id="dica" style="margin-top:10px">🤖 Como melhorar minha pronúncia?</button>':''}</div>`;
+  if(nota>=85)falar([{t:'Muito bem!',lang:'pt'}]);
+  if($('#dica'))$('#dica').onclick=async()=>{$('#dica').outerHTML='<div class="loading" id="ld"><i></i><i></i><i></i></div>';
+    try{const j=await ia({json:true,system:'Você é fonoaudiólogo e professor de inglês para brasileiros iniciantes, muito paciente. '+quem(),contents:[{role:'user',parts:[{text:`Frase que o aluno devia dizer: "${alvo}". O reconhecimento de voz entendeu: "${dito}". As palavras não reconhecidas foram: ${a.A.filter((w,i)=>!a.marcas[i]).join(', ')||'nenhuma'}. Explique em português simples como pronunciar essas palavras (use escrita aproximada em português, ex.: "thank" = "fénk" com a língua entre os dentes) e dê uma dica prática. Responda em JSON: {"pt":"explicação curta, no máximo 80 palavras","palavras":[{"en":"palavra","como":"como soa em português"}]}`}]}]});
+      $('#ld').outerHTML=`<div class="res info"><div>${esc(j.pt||'')}</div>${(j.palavras||[]).map(p=>`<div class="ex"><button data-w="${esc(p.en)}">🔊</button><div><b>${esc(p.en)}</b> — soa como “${esc(p.como)}”</div></div>`).join('')}</div>`;
+      document.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>falar(b.dataset.w,{devagar:true}));falar([{t:j.pt||'',lang:'pt'}]);
+    }catch(e){$('#ld').outerHTML=`<div class="res warn">${esc(msgErroIA(e))}</div>`}};
+}
+async function avaliarAudio(alvo,audio){
+  $('#res').innerHTML='<div class="res info">Ouvindo sua pronúncia… <div class="loading"><i></i><i></i><i></i></div></div>';
+  try{const j=await ia({json:true,temp:0.2,contents:[{role:'user',parts:[{inline_data:{mime_type:'audio/wav',data:audio}},{text:`Você é professor de pronúncia de inglês para brasileiros iniciantes, muito gentil. ${quem()}O aluno tentou dizer: "${alvo}". Ouça o áudio e avalie a pronúncia. Responda em JSON: {"ouvido":"o que você ouviu, em inglês","nota":0-10,"palavras_problema":["palavras do alvo mal pronunciadas"],"dica":"em português simples, no máximo 60 palavras, como melhorar (use escrita aproximada, ex.: 'thank' = 'fénk' com a língua entre os dentes). Se estiver bom, elogie."}`}]}]});
+    const marcas=norm(alvo).map(w=>!(j.palavras_problema||[]).some(p=>norm(p).includes(w)));
+    const nota=Math.round((+j.nota||0)*10);const cls=nota>=80?'ok':nota>=50?'warn':'bad';
+    $('#res').innerHTML=`<div class="res ${cls}"><b class="t">Nota da pronúncia: ${nota/10}/10</b><div style="font-size:1.15em;margin:8px 0">${palavrasColoridas(alvo,marcas)}</div><div>${esc(j.dica||'')}</div><div class="muted" style="margin-top:6px">Ouvi: “${esc(j.ouvido||'')}”</div></div>`;
+    falar([{t:j.dica||'',lang:'pt'}]);
+  }catch(e){$('#res').innerHTML=`<div class="res warn">${esc(msgErroIA(e))}</div>`}
+}
+
+/* =================== EXERCÍCIOS =================== */
+const TIPO_INFO={traduzir:['🇧🇷→🇺🇸','Diga em inglês'],responder:['💬','Responda a pergunta'],escolha:['☑️','Escolha a resposta'],soletrar:['🔤','Como se diz e se soletra'],dialogo:['🎭','Diálogo'],redacao:['📝','Escrever um texto']};
+function telaExercicios(id){
+  const l=L(id);titulo('Exercícios');
+  V().innerHTML=`<div class="card"><div class="big" style="font-size:1.2em">${esc(l.tituloPt)}</div><p class="muted" style="margin:6px 0 0">Escolha uma atividade. Você pode responder escrevendo ou falando.</p></div>
+  ${l.atividades.map((a,ai)=>{const p=Math.round(pctAtiv(l,ai)*100);const ti=TIPO_INFO[a.tipo];return `<button class="lesson" data-a="${ai}"><span class="num" style="font-size:.85em">${ti[0]}</span><span style="flex:1"><b>${esc(a.nome)}</b><span class="muted">${ti[1]} · ${a.itens.length} ${a.tipo==='dialogo'?'falas':'itens'}</span><span class="prog"><i style="width:${p}%"></i></span></span></button>`}).join('')}`;
+  V().querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{const a=l.atividades[+b.dataset.a];const p=(S.prog[l.id]||{})[+b.dataset.a]||{};let ini=0;while(p[ini]!==undefined&&ini<a.itens.length-1)ini++;ir(a.tipo==='dialogo'?telaDialogo:telaItem,l.id,+b.dataset.a,a.tipo==='dialogo'?0:ini)});
+}
+function telaItem(id,ai,ii){
+  const l=L(id),a=l.atividades[ai];ii=Math.max(0,Math.min(ii,a.itens.length-1));const it=a.itens[ii];titulo(a.nome);
+  const ti=TIPO_INFO[a.tipo];let ajuda=0;
+  const cab=`${velBar()}<div class="step"><span>${ii+1} de ${a.itens.length}</span><span>${ti[0]} ${ti[1]}</span></div>`;
+  const nav=`<div class="row" style="margin-top:6px"><button class="btn" id="ant" ${ii===0?'disabled style="opacity:.4"':''}>◀ Anterior</button><button class="btn pri" id="prx">${ii===a.itens.length-1?'Terminar ✓':'Próximo ▶'}</button></div>`;
+  let corpo='';
+  if(a.tipo==='escolha'){
+    corpo=`<div class="card"><div class="en" style="font-size:1.25em">${esc(it[0])}</div>${/[a-z]/.test(it[0])&&!/[ãçéêíóúâ]/i.test(it[0])?'<button class="btn soft sm" id="ouvP" style="margin-top:10px">🔊 Ouvir</button>':''}</div>
+     ${it[1].map((o,k)=>`<button class="opt" data-o="${k}">${String.fromCharCode(65+k)}) ${esc(o)}</button>`).join('')}<div id="res"></div>
+     ${lembreteDe(l.id,ai)?'<button class="btn" id="ajE">📘 Relembrar a regra</button><div id="ajBox"></div>':''}`;
+  }else{
+    const enunciado=a.tipo==='traduzir'?`<div class="muted">Como se diz em inglês?</div><div class="big" style="font-size:1.3em">${esc(it[0])}</div>`
+      :a.tipo==='soletrar'?`<div class="muted">Como se diz em inglês? Depois, soletre.</div><div class="big">“${esc(it[0])}”</div>`
+      :a.tipo==='redacao'?`<div class="muted">Escreva (ou dite) o seu texto em inglês:</div><div style="font-weight:700;margin-top:6px">${esc(it[0])}</div>`
+      :`<div class="muted">Ouça e responda em inglês, falando de você:</div><div class="en">${esc(it[0])}</div><button class="btn soft sm" id="ouvP" style="margin-top:10px">🔊 Ouvir a pergunta</button>`;
+    corpo=`<div class="card">${enunciado}</div>
+     <div class="card" style="text-align:center">${micHTML('m1',a.tipo==='redacao'?'Toque para ditar o texto':'Toque e fale a resposta')}
+      ${a.tipo==='redacao'?'<textarea id="txt" placeholder="Escreva aqui em inglês…" style="min-height:200px"></textarea>':'<input type="text" id="txt" placeholder="…ou escreva aqui" autocomplete="off" autocapitalize="sentences">'}
+      <div style="height:10px"></div><button class="btn ok" id="conf">✔ Conferir minha resposta</button>
+      <button class="btn" id="aj">🆘 Me ajude</button></div><div id="ajBox"></div><div id="res"></div>`;
+  }
+  V().innerHTML=cab+corpo+nav;
+  const go=n=>{pilha[pilha.length-1]=[telaItem,[id,ai,n]];telaItem(id,ai,n);window.scrollTo(0,0)};
+  $('#ant').onclick=()=>ii>0&&go(ii-1);
+  $('#prx').onclick=()=>{if(ii<a.itens.length-1)go(ii+1);else{toast('Atividade concluída! 👏');voltar()}};
+  if($('#ouvP'))$('#ouvP').onclick=()=>falar(it[0].replace(/_+/g,'...'));
+  if(a.tipo==='responder')setTimeout(()=>falar(it[0]),350);
+  if(a.tipo==='escolha'){
+    if($('#ajE'))$('#ajE').onclick=()=>{const lm=lembreteDe(l.id,ai);$('#ajBox').innerHTML=lembreteHTML(lm);ligarLembrete(lm,$('#ajBox'));$('#ajE').classList.add('hide');falarLembrete(lm)};
+    V().querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const k=+b.dataset.o;V().querySelectorAll('[data-o]').forEach(x=>{x.disabled=true});
+      V().querySelector(`[data-o="${it[2]}"]`).classList.add('ok');if(k!==it[2])b.classList.add('bad');
+      const ok=k===it[2];marcar(l.id,ai,ii,ok?100:30);
+      $('#res').innerHTML=`<div class="res ${ok?'ok':'bad'}"><b class="t">${ok?'Correto! 🎉':'Não foi dessa vez.'}</b>${esc(it[3]||'')}</div>`;
+      falar([{t:ok?'Correto!':'A resposta certa é a letra '+String.fromCharCode(65+it[2])+'.',lang:'pt'}])});
+    return;
+  }
+  const txt=$('#txt');
+  $('#m1').onclick=async()=>{const t=await usarMic('m1',{lang:'en'});if(t){if(a.tipo==='redacao')txt.value=(txt.value?txt.value+' ':'')+t;else txt.value=t;if(a.tipo!=='redacao')conferir()}};
+  $('#conf').onclick=conferir;
+  txt.addEventListener('keydown',e=>{if(e.key==='Enter'&&a.tipo!=='redacao'){e.preventDefault();conferir()}});
+  const lm=lembreteDe(l.id,ai);
+  const rotAj=()=>{const n=ajuda+(lm?0:1);$('#aj').textContent=n===0?'🆘 Me ajude (relembrar a regra)':n===1?'🆘 Me ajude mais (uma dica)':'🆘 Ver a resposta e o porquê';};
+  rotAj();
+  $('#aj').onclick=()=>{ajuda++;const modelo=it[1];const etapa=ajuda+(lm?0:1);
+    if(etapa===1&&lm){$('#ajBox').innerHTML=lembreteHTML(lm)+'<div class="muted" style="margin:-4px 4px 12px">Leia a regra com calma e tente de novo. Se ainda precisar, toque em “Me ajude mais”.</div>';ligarLembrete(lm,$('#ajBox'));falarLembrete(lm);rotAj();$('#ajBox').scrollIntoView({behavior:'smooth',block:'start'});return}
+    if(etapa===2){let dica;
+      if(a.tipo==='soletrar')dica=`A palavra começa com a letra <b>${esc(modelo[0].toUpperCase())}</b> e tem ${modelo.length} letras.`;
+      else{const ws=modelo.split(/\s+/);const n=Math.max(1,Math.min(3,Math.ceil(ws.length/3)));dica=`Comece a frase assim: <b class="hl">${esc(ws.slice(0,n).join(' '))}</b> …<div style="margin-top:6px">Agora continue usando a regra acima.</div>`;falar(ws.slice(0,n).join(' '))}
+      $('#ajBox').insertAdjacentHTML('beforeend',`<div class="res info"><b class="t">💡 Dica</b>${dica}<div class="muted" style="margin-top:6px">Ainda travado? Toque em “Ver a resposta e o porquê”.</div></div>`);rotAj();return}
+    mostrarModelo(true)};
+  function mostrarModelo(comPorque){const m=it[1];marcar(l.id,ai,ii,10);$('#aj').classList.add('hide');
+    $('#res').innerHTML=`<div class="res info"><b class="t">${a.tipo==='responder'||a.tipo==='redacao'?'Exemplo de resposta':'Resposta'}</b><div class="${a.tipo==='redacao'?'reading':'en'}" style="font-size:${a.tipo==='redacao'?'1em':'1.2em'}">${esc(m)}</div>
+     ${a.tipo==='soletrar'?`<div style="margin-top:6px;font-weight:700;letter-spacing:2px">${esc(m.toUpperCase().split('').join(' - '))}</div>`:''}
+     <div class="row" style="margin-top:10px"><button class="btn sm soft" id="ouvM">🔊 Ouvir</button></div>
+     ${a.tipo==='responder'?'<div class="muted" style="margin-top:8px">É só um exemplo: responda com a sua realidade.</div>':''}</div><div id="porqBox"></div>`;
+    $('#ouvM').onclick=()=>a.tipo==='soletrar'?falar(m+'. '+m.toUpperCase().split('').join(', ')+'.'):falar(m);
+    if(!comPorque||a.tipo==='soletrar'){falar(m);return}
+    // explica o porquê da resposta
+    if(temChave()&&a.tipo!=='redacao'){explicarResposta(m);return}
+    const box=$('#porqBox');
+    if(lm&&!$('#ajBox .lem')){box.innerHTML=lembreteHTML(lm,'Por que é assim? Relembre a regra');ligarLembrete(lm,box)}
+    else if(lm)box.innerHTML='<div class="muted" style="margin:0 4px 12px">👆 A resposta segue a regra que está no quadro amarelo acima. Compare a resposta com a fórmula.</div>';
+    falar(m)}
+  async function explicarResposta(m){const box=$('#porqBox');
+    box.innerHTML='<div class="res info">O professor está preparando a explicação… <div class="loading"><i></i><i></i><i></i></div></div>';
+    try{const j=await ia({json:true,temp:0.3,system:SYS_DIDATICO+quem()+'\n\n'+contextoAula(l).slice(0,4000),
+      contents:[{role:'user',parts:[{text:`Exercício (${ti[1]}): "${it[0]}". Resposta: "${m}".
+Explique esta resposta para alguém que NÃO SABE NADA de inglês. Responda em JSON:
+{"regra":"2 a 4 frases: qual regra da aula foi usada, para que ela serve e como é diferente do português (palavras em inglês entre [[ ]])",
+"passos":["passo 1 da montagem da frase","passo 2", "..."] (de 2 a 5 passos, cada um explicando uma parte da frase, com o inglês entre [[ ]]),
+"palavras":[{"en":"palavra ou pedaço da frase","pt":"significado","som":"como soa, escrito à brasileira"}] (todas as partes da frase, na ordem),
+"dica":"1 frase com um erro comum de brasileiros nesta frase e como evitar (inglês entre [[ ]])"}`}]}]});
+      box.innerHTML=`<div class="res info did"><b class="t">🧑‍🏫 Por que a resposta é assim?</b><p>${didHTML(j.regra||'')}</p>
+        ${(j.passos||[]).length?`<div style="font-weight:800;margin:6px 0">Montando a frase, passo a passo:</div><ol class="steps">${j.passos.map(p=>`<li>${didHTML(p)}</li>`).join('')}</ol>`:''}
+        ${(j.palavras||[]).length?`<div style="font-weight:800;margin:6px 0">Palavra por palavra:</div>${j.palavras.map((w,k)=>`<div class="exd" style="margin-top:6px"><button data-pw="${k}" aria-label="Ouvir">🔊</button><div><b>${esc(w.en)}</b> = ${esc(w.pt)}${w.som?`<div class="e4">soa como “${esc(w.som)}”</div>`:''}</div></div>`).join('')}`:''}
+        ${j.dica?`<p style="margin-top:10px">⚠️ ${didHTML(j.dica)}</p>`:''}
+        <button class="btn sm soft" id="ouvPq" style="margin-top:6px">🔊 Ouvir a explicação</button></div>`;
+      box.querySelectorAll('[data-pw]').forEach(b=>b.onclick=()=>falar(j.palavras[+b.dataset.pw].en));
+      const fala=()=>{const p=[{t:m,lang:'en'},...partesDid(j.regra)];(j.passos||[]).forEach(x=>p.push(...partesDid(x)));if(j.dica)p.push(...partesDid(j.dica));falar(p)};
+      $('#ouvPq').onclick=fala;fala();
+    }catch(e){box.innerHTML=lm?lembreteHTML(lm,'Por que é assim? Relembre a regra'):`<div class="res warn">${esc(msgErroIA(e))}</div>`;if(lm)ligarLembrete(lm,box);falar(m)}
+  }
+  async function conferir(){
+    const resp=txt.value.trim();if(!resp){toast('Fale ou escreva sua resposta primeiro');return}
+    const modelo=it[1];
+    if(a.tipo==='soletrar'){const ok=norm(resp).join('')===norm(modelo).join('')||resp.replace(/[^a-z]/gi,'').toLowerCase()===modelo.toLowerCase();
+      marcar(l.id,ai,ii,ok?100:30);
+      $('#res').innerHTML=`<div class="res ${ok?'ok':'bad'}"><b class="t">${ok?'Correto! 🎉':'Ainda não.'}</b>${ok?'':'A palavra é <b>'+esc(modelo)+'</b>.'}<div style="margin-top:6px;font-weight:700;letter-spacing:2px">${esc(modelo.toUpperCase().split('').join(' - '))}</div><button class="btn sm soft" id="ouvS" style="margin-top:10px">🔊 Ouvir soletrado</button></div>`;
+      $('#ouvS').onclick=()=>falar(modelo+'. '+modelo.toUpperCase().split('').join(', ')+'.');falar(modelo+'. '+modelo.toUpperCase().split('').join(', ')+'.');return}
+    const al=alinhar(modelo,resp);
+    if(a.tipo==='traduzir'&&al.nota>=88){marcar(l.id,ai,ii,100);
+      $('#res').innerHTML=`<div class="res ok"><b class="t">Correto! 🎉</b><div class="en" style="font-size:1.15em">${esc(modelo)}</div><button class="btn sm soft" id="ouvM" style="margin-top:10px">🔊 Ouvir a pronúncia</button></div>`;
+      $('#ouvM').onclick=()=>falar(modelo);falar([{t:'Correto!',lang:'pt'},{t:modelo,lang:'en'}]);return}
+    if(!temChave()){
+      marcar(l.id,ai,ii,a.tipo==='traduzir'?al.nota:60);
+      $('#res').innerHTML=a.tipo==='traduzir'?`<div class="res bad"><b class="t">Quase! Compare com a resposta:</b><div style="font-size:1.15em;margin:6px 0">${palavrasColoridas(modelo,al.marcas)}</div><div class="muted">As palavras em vermelho estão diferentes ou faltando na sua resposta.</div><button class="btn sm soft" id="ouvM" style="margin-top:10px">🔊 Ouvir</button></div>`
+        :`<div class="res info"><b class="t">Compare com um exemplo de resposta:</b><div class="en" style="font-size:1.1em">${esc(modelo)}</div><div class="muted" style="margin-top:6px">Com a chave da IA em Ajustes, o professor corrige a sua resposta e explica.</div><button class="btn sm soft" id="ouvM" style="margin-top:10px">🔊 Ouvir</button></div>`;
+      $('#ouvM').onclick=()=>falar(modelo);
+      if(lm&&!$('#ajBox').innerHTML){$('#ajBox').innerHTML=lembreteHTML(lm,'Relembre a regra desta atividade');ligarLembrete(lm,$('#ajBox'))}
+      falar(modelo);return}
+    $('#res').innerHTML='<div class="res info">O professor está corrigindo… <div class="loading"><i></i><i></i><i></i></div></div>';
+    try{
+      const j=await ia({json:true,temp:0.2,system:SYS_DIDATICO+'Agora você está corrigindo um exercício. '+quem()+'A resposta do aluno pode ter vindo do reconhecimento de voz: ignore maiúsculas, pontuação e pequenos erros de transcrição. Aceite respostas diferentes do modelo se estiverem corretas e naturais.\n\n'+contextoAula(l).slice(0,4000),
+        contents:[{role:'user',parts:[{text:`Tipo de exercício: ${ti[1]}.\nEnunciado: "${it[0]}"\nResposta modelo: "${modelo}"\nResposta do aluno: "${resp}"\n\nAvalie. Responda em JSON: {"correto": true/false, "nota": 0-10, "resposta_corrigida": "a resposta do aluno corrigida em inglês (ou igual, se estiver certa)", "explicacao": "em português, de 3 a 6 frases, com contexto: comece dizendo o que o aluno acertou; se errou, RELEMBRE a regra da aula (para que serve e como se monta), mostre a diferença para o português e explique pedaço por pedaço o que muda na frase. Inglês entre [[ ]]."}`}]}]});
+      const ok=!!j.correto||(+j.nota>=8);marcar(l.id,ai,ii,Math.round((+j.nota||0)*10));
+      const corr=j.resposta_corrigida||modelo;
+      $('#res').innerHTML=`<div class="res ${ok?'ok':(+j.nota>=5?'warn':'bad')}"><b class="t">${ok?'Muito bem! 🎉':'Vamos ajustar:'} <span class="muted">(${+j.nota||0}/10)</span></b><div style="line-height:1.55">${didHTML(j.explicacao||'')}</div>
+        ${corr&&norm(corr).join(' ')!==norm(resp).join(' ')?`<div style="margin-top:8px"><span class="muted">Forma correta:</span><div class="en" style="font-size:1.15em">${esc(corr)}</div></div>`:''}
+        <div class="row" style="margin-top:10px"><button class="btn sm soft" id="ouvM">🔊 Ouvir</button><button class="btn sm soft" id="porq">🤖 Explicar mais</button></div></div>`;
+      $('#ouvM').onclick=()=>falar(corr);
+      $('#porq').onclick=()=>explicarIA(`No exercício "${it[0]}" eu respondi "${resp}". A forma correta é "${corr}". Me explique com mais detalhes, em português simples, a regra e me dê mais 3 exemplos parecidos.`);
+      if(!ok&&lm&&!$('#ajBox').innerHTML){$('#ajBox').innerHTML=lembreteHTML(lm,'Relembre a regra desta atividade');ligarLembrete(lm,$('#ajBox'))}
+      falar([...partesDid(j.explicacao||''),{t:'A forma correta é:',lang:'pt'},{t:corr,lang:'en'}]);
+    }catch(e){
+      marcar(l.id,ai,ii,a.tipo==='traduzir'?al.nota:60);
+      $('#res').innerHTML=`<div class="res warn"><b class="t">${esc(msgErroIA(e))}</b><div style="margin-top:6px">Compare com: <span class="en" style="font-size:1.1em">${esc(modelo)}</span></div></div>`}
+  }
+  function explicarIA(pergunta){ir(telaChat,l.id,'duvida',pergunta)}
+}
+function telaDialogo(id,ai,ii){
+  const l=L(id),a=l.atividades[ai];titulo(a.nome);const meu=a.papel;
+  const falas=a.itens;ii=Math.max(0,Math.min(ii,falas.length));
+  if(ii>=falas.length){V().innerHTML=`<div class="card" style="text-align:center"><div class="big">Diálogo concluído! 🎉</div><p>Você fez o papel de <b>${esc(meu)}</b>.</p></div><button class="btn pri" id="de">🔁 Fazer de novo</button><button class="btn" id="ou">🔊 Ouvir o diálogo inteiro</button><button class="btn" id="vt">◀ Voltar aos exercícios</button>`;
+    $('#de').onclick=()=>{pilha[pilha.length-1]=[telaDialogo,[id,ai,0]];telaDialogo(id,ai,0)};$('#vt').onclick=voltar;
+    $('#ou').onclick=()=>falar(falas.map(f=>({t:f[1],lang:'en'})));return}
+  const f=falas[ii];const minha=f[0]===meu;
+  V().innerHTML=`${velBar()}<div class="step"><span>Fala ${ii+1} de ${falas.length}</span><span>Você é: ${esc(meu)}</span></div>
+  <div class="chat">${falas.slice(Math.max(0,ii-3),ii).map(x=>`<div class="msg ${x[0]===meu?'me':'ai'}"><small style="opacity:.8">${esc(x[0])}</small><br>${esc(x[1])}</div>`).join('')}</div>
+  <div class="card" style="${minha?'border:3px solid var(--pri)':''}"><div class="muted">${minha?'👉 SUA VEZ — leia em voz alta:':esc(f[0])+' diz:'}</div><div class="en">${esc(f[1])}</div><div class="pt">${esc(f[2])}</div>
+   <div class="row" style="margin-top:12px"><button class="btn soft sm" id="o1">🔊 Ouvir</button><button class="btn soft sm" id="o2">🐢 Devagar</button></div></div>
+  ${minha?`<div class="card" style="text-align:center">${micHTML('m1','Toque e diga a sua fala')}<div id="res"></div></div>`:''}
+  <button class="btn pri" id="prx">${minha?'Próxima fala ▶':'Continuar ▶'}</button>`;
+  $('#o1').onclick=()=>falar(f[1]);$('#o2').onclick=()=>falar(f[1],{devagar:true});
+  $('#prx').onclick=()=>{marcar(l.id,ai,ii,minha?60:100);pilha[pilha.length-1]=[telaDialogo,[id,ai,ii+1]];telaDialogo(id,ai,ii+1);window.scrollTo(0,0)};
+  if(!minha)setTimeout(()=>falar(f[1]),300);
+  if(minha)$('#m1').onclick=async()=>{const r=await usarMic('m1',{querAudio:modoVoz()==='ia'});if(!r)return;if(r.audio){avaliarAudio(f[1],r.audio)}else{mostrarPronuncia(f[1],typeof r==='string'?r:r.texto);marcar(l.id,ai,ii,alinhar(f[1],typeof r==='string'?r:r.texto).nota)}};
+}
+
+/* =================== CONVERSA / DÚVIDA =================== */
+function telaChat(id,modo,perguntaInicial){
+  const l=L(id);titulo(modo==='conversa'?'Conversar':'Tirar dúvida');
+  const chave=l.id+'|'+modo;const hist=S.chats[chave]=S.chats[chave]||[];
+  if(!temChave()){V().innerHTML=`<div class="card"><div class="big">🤖 Professor com IA</div><p>Para ${modo==='conversa'?'conversar por voz':'tirar dúvidas'}, o app usa uma inteligência artificial gratuita do Google (Gemini).</p><p>É preciso cadastrar uma <b>chave grátis</b> uma única vez. Leva uns 5 minutos.</p><button class="btn pri" id="cfg">Cadastrar a chave agora</button></div><div class="card"><b>Enquanto isso</b>, você pode usar sem internet: Entender a aula, Ouvir e repetir, e os Exercícios (com as respostas prontas).</div>`;$('#cfg').onclick=()=>ir(telaAjustes);return}
+  V().innerHTML=`${velBar()}<div class="card" style="padding:12px 14px"><b>${esc(nomeAula(l))}:</b> ${esc(l.tituloPt)}<div class="muted">${modo==='conversa'?'O professor conversa com você em inglês sobre esta aula e corrige com carinho. Pode falar em português se travar.':'Pergunte em português qualquer coisa sobre esta aula.'}</div></div>
+  <div class="chat" id="chat"></div><div id="carr"></div>
+  <div class="card" style="text-align:center;position:sticky;bottom:8px">${micHTML('m1',modo==='conversa'?'Toque e fale em inglês (ou português)':'Toque e faça sua pergunta')}
+   <div class="row"><input type="text" id="txt" placeholder="…ou escreva aqui" autocomplete="off"><button class="btn pri sm" id="env" style="flex:0 0 80px">Enviar</button></div>
+   <div class="row" style="margin-top:10px"><button class="btn sm" id="rep">🔁 Repetir</button><button class="btn sm" id="dev">🐢 Devagar</button><button class="btn sm" id="nov">🗑 Recomeçar</button></div></div>`;
+  const box=$('#chat');
+  const render=()=>{box.innerHTML=hist.map((m,i)=>m.r==='u'?`<div class="msg me">${esc(m.t)}</div>`:`<div class="msg ai">${m.en?`<span style="font-weight:700">${esc(m.en)}</span>`:''}${m.fix?`<span class="fix">✔ Forma correta: ${esc(m.fix)}</span>`:''}${m.pt?`<span class="ptx" style="line-height:1.55">${didHTML(m.pt).replace(/\n+/g,'<br><br>')}</span>`:''}${(m.ex||[]).map(e=>`<span class="ptx"><b>${esc(e.en)}</b><br>${esc(e.pt)}${e.palavras?`<br><small>🧩 ${esc(e.palavras)}</small>`:''}</span>`).join('')}<br><button class="say" data-i="${i}">🔊 Ouvir</button></div>`).join('');
+    box.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>falarMsg(hist[+b.dataset.i]));window.scrollTo(0,document.body.scrollHeight)};
+  const falarMsg=(m,dev)=>{const p=[];if(m.pt&&modo==='duvida')p.push(...partesDid(m.pt));if(m.en)p.push({t:m.en,lang:'en'});if(m.fix)p.push({t:'A forma correta é:',lang:'pt'},{t:m.fix,lang:'en'});if(m.pt&&modo==='conversa')p.push(...partesDid(m.pt));(m.ex||[]).forEach(e=>p.push({t:e.en,lang:'en'},{t:e.pt,lang:'pt'}));falar(p,dev?{devagar:true}:null)};
+  const sys=modo==='conversa'
+   ?`Você é um professor de inglês nativo, extremamente paciente, simpático e acolhedor, conversando POR VOZ com um aluno brasileiro iniciante que pode ser idoso e ter pouca experiência com celular. ${quem()}
+REGRAS:
+1) Converse SOMENTE sobre o tema e a gramática desta aula (abaixo), usando vocabulário simples deste nível.
+2) Faça UMA pergunta curta por vez. Frases curtas (máximo 15 palavras cada), no máximo 2 frases em inglês por resposta.
+3) O aluno não sabe quase nada de inglês. No campo "pt", SEMPRE traduza o que você disse em inglês, para ele entender.
+4) Se o aluno errar, mostre a forma correta no campo "correcao" e, no campo "pt", explique o erro com contexto e carinho (2 a 4 frases): relembre a regra da aula (para que serve e como se monta), compare com o português e mostre o que muda na frase dele. Se acertar, elogie e diga o que ele usou bem.
+4b) Se o aluno falar em português ou disser que não entendeu, ajude em português no campo "pt", explique a pergunta palavra por palavra e repita a pergunta em inglês mais simples.
+4c) No campo "pt", toda palavra ou frase em inglês deve ficar entre [[ ]] (ex.: [[I am]]).
+5) O texto do aluno vem do reconhecimento de voz: ignore pontuação, maiúsculas e pequenos erros de transcrição; nunca corrija isso.
+6) Varie as perguntas, seguindo as entrevistas e atividades da aula. A cada 4 ou 5 trocas, ensine uma expressão nova da aula.
+Responda SEMPRE em JSON: {"en":"sua fala em inglês (será lida em voz alta)","pt":"comentário curto em português (ou vazio)","correcao":"frase do aluno corrigida em inglês, ou vazio se estava certa"}
+
+${contextoAula(l)}`
+   :`${SYS_DIDATICO}${quem()}Responda dúvidas sobre a aula abaixo (ou sobre inglês em geral) em português do Brasil bem simples.
+Organize a explicação assim, em parágrafos curtos separados por linha em branco:
+1) O contexto: para que serve isso e em que situação do dia a dia se usa.
+2) Como é em português e o que muda no inglês.
+3) A regra, montando a frase passo a passo (pedaço por pedaço, com o significado de cada palavra).
+4) Um erro comum de brasileiros e como evitar.
+Entre 150 e 300 palavras. Nunca seja seco ou direto demais.
+Responda SEMPRE em JSON: {"pt":"explicação em português (inglês entre [[ ]])","exemplos":[{"en":"frase em inglês","pt":"tradução","palavras":"palavra por palavra, ex.: I = eu · am = sou"}] (de 3 a 4 exemplos simples)}
+
+${contextoAula(l)}`;
+  async function enviar(texto){
+    if(!texto||!texto.trim())return;
+    hist.push({r:'u',t:texto.trim()});save();render();$('#txt').value='';
+    await responder();
+  }
+  async function responder(){
+    $('#carr').innerHTML='<div class="loading"><i></i><i></i><i></i></div>';
+    const contents=(hist.length?hist:[{r:'u',t:'Olá! Pode começar.'}]).slice(-16).map(m=>m.r==='u'?{role:'user',parts:[{text:m.t}]}:{role:'model',parts:[{text:JSON.stringify(modo==='conversa'?{en:m.en,pt:m.pt,correcao:m.fix}:{pt:m.pt,exemplos:m.ex})}]});
+    if(contents[0].role!=='user')contents.unshift({role:'user',parts:[{text:'Olá! Pode começar.'}]});
+    try{const j=await ia({system:sys,contents,json:true,temp:0.7});
+      const m={r:'a',en:j.en||'',pt:j.pt||'',fix:j.correcao||'',ex:Array.isArray(j.exemplos)?j.exemplos:[]};
+      hist.push(m);if(hist.length>60)hist.splice(0,hist.length-60);save();$('#carr').innerHTML='';render();falarMsg(m);
+    }catch(e){$('#carr').innerHTML=`<div class="res warn">${esc(msgErroIA(e))}</div>`}
+  }
+  $('#m1').onclick=async()=>{const t=await usarMic('m1',{lang:modo==='duvida'?'pt':'en'});if(t)enviar(t)};
+  $('#env').onclick=()=>enviar($('#txt').value);
+  $('#txt').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();enviar($('#txt').value)}});
+  $('#rep').onclick=()=>{const m=[...hist].reverse().find(x=>x.r==='a');if(m)falarMsg(m)};
+  $('#dev').onclick=()=>{const m=[...hist].reverse().find(x=>x.r==='a');if(m)falarMsg(m,true)};
+  $('#nov').onclick=()=>{if(confirm('Apagar esta conversa e começar de novo?')){hist.length=0;save();render();if(modo==='conversa')responder()}};
+  render();
+  if(perguntaInicial)enviar(perguntaInicial);
+  else if(!hist.length&&modo==='conversa')responder();
+  else if(!hist.length&&modo==='duvida'){hist.push({r:'a',pt:'Olá! Pode me perguntar qualquer coisa sobre esta aula, em português. Por exemplo: "quando eu uso '+(l.titulo.split(/[ ,]/)[0])+'?" ou "me explique de novo com exemplos".',ex:[]});render()}
+}
+
+/* =================== AJUSTES =================== */
+function telaAjustes(){
+  titulo('Ajustes');const c=S.cfg;
+  V().innerHTML=`
+  <div class="card"><div class="big" style="font-size:1.2em">👤 Seu nome</div><p class="muted">O professor vai te chamar assim.</p><input type="text" id="nome" value="${esc(c.nome)}" placeholder="Ex.: Maria"></div>
+  <div class="card"><div class="big" style="font-size:1.2em">🔠 Tamanho da letra</div><div class="row" style="margin-top:10px"><button class="btn sm" data-f="17">A</button><button class="btn sm" data-f="19" style="font-size:1.1em">A</button><button class="btn sm" data-f="22" style="font-size:1.3em">A</button><button class="btn sm" data-f="25" style="font-size:1.5em">A</button></div></div>
+  <div class="card"><div class="big" style="font-size:1.2em">🗣 Velocidade da voz</div><p class="muted">1x é a velocidade normal. 0,75x e 0,5x são mais devagar; 1,25x é mais rápido. Este controle também aparece no alto de cada tela com áudio.</p>${velBar()}<button class="btn soft sm" id="tv">🔊 Testar a voz</button>
+   <p class="muted">Dica: para uma voz mais natural, no iPhone vá em Ajustes › Acessibilidade › Conteúdo Falado › Vozes › Inglês e baixe a voz “Samantha (Aprimorada)”.</p></div>
+  <div class="card"><div class="big" style="font-size:1.2em">🌓 Cores</div><div class="row" style="margin-top:10px"><button class="btn sm" data-t="light">Claro</button><button class="btn sm" data-t="dark">Escuro</button><button class="btn sm" data-t="auto">Automático</button></div></div>
+  <div class="card"><div class="big" style="font-size:1.2em">🤖 Professor com IA (Gemini — grátis)</div>
+   <p>Status: <b>${c.chave?'✅ chave cadastrada'+(c.modelo?' ('+esc(c.modelo)+')':''):'❌ sem chave'}</b></p>
+   <input type="password" id="chave" placeholder="Cole aqui a chave (começa com AIza…)" value="${esc(c.chave)}" autocomplete="off">
+   <div style="height:10px"></div><button class="btn pri" id="salvarChave">Salvar e testar a chave</button>
+   <details><summary style="font-weight:800;padding:8px 0;cursor:pointer">Como conseguir a chave grátis (passo a passo)</summary>
+   <ol class="steps"><li>No Safari, abra <b>aistudio.google.com</b> e entre com sua conta Google (a mesma do Gmail).</li><li>Aceite os termos, se aparecerem.</li><li>Toque em <b>Get API key</b> (Obter chave de API) e depois em <b>Create API key</b> (Criar chave).</li><li>Toque em <b>Copiar</b> ao lado da chave (um código que começa com <b>AIza</b>).</li><li>Volte para este app, cole a chave no campo acima e toque em <b>Salvar e testar</b>.</li></ol>
+   <p class="muted">A chave fica guardada só neste celular. O plano grátis tem um limite por dia; se acabar, volta no dia seguinte. No plano grátis o Google pode usar as conversas para melhorar os produtos dele — não fale dados pessoais sensíveis.</p></details></div>
+  <div class="card"><div class="big" style="font-size:1.2em">🎤 Microfone</div>
+   <p class="muted">Este aparelho ${SR?'tem reconhecimento de voz próprio ✅':'não tem reconhecimento de voz próprio — o app usa a IA para entender o que você fala'}.</p>
+   <div class="seg"><button data-mv="auto">Automático</button><button data-mv="ia">Pela IA (mais preciso)</button></div>
+   <p class="muted">“Pela IA” grava sua voz e a IA ouve a pronúncia de verdade (mais preciso, mas gasta mais do limite grátis e demora um pouco mais).</p>
+   <button class="btn soft sm" id="tm">🎤 Testar o microfone</button><div id="tmr" class="small-note"></div></div>
+  <div class="card"><div class="big" style="font-size:1.2em">💾 Meu progresso</div><p class="muted">Fica guardado neste celular. Faça uma cópia de vez em quando.</p>
+   <div class="row"><button class="btn sm" id="exp">Salvar cópia</button><button class="btn sm" id="imp">Restaurar cópia</button></div></div>
+  <button class="btn" id="tut">❓ Ver como usar o app</button>`;
+  $('#nome').onchange=()=>{c.nome=$('#nome').value.trim();save()};
+  V().querySelectorAll('[data-f]').forEach(b=>{b.classList.toggle('pri',+b.dataset.f===c.fonte);b.onclick=()=>{c.fonte=+b.dataset.f;save();applyCfg();telaAjustes()}});
+  V().querySelectorAll('[data-t]').forEach(b=>{b.classList.toggle('pri',b.dataset.t===c.tema);b.onclick=()=>{c.tema=b.dataset.t;save();applyCfg();telaAjustes()}});
+  V().querySelectorAll('[data-mv]').forEach(b=>{b.classList.toggle('on',b.dataset.mv===c.modoVoz||(b.dataset.mv==='auto'&&c.modoVoz==='local'));b.onclick=()=>{c.modoVoz=b.dataset.mv;save();telaAjustes()}});
+  $('#tv').onclick=()=>falar([{t:'Hello! Nice to meet you.',lang:'en'},{t:'Olá! Prazer em conhecer você.',lang:'pt'}]);
+  $('#salvarChave').onclick=async()=>{const k=$('#chave').value.trim();if(!k){c.chave='';c.modelo='';save();telaAjustes();return}
+    $('#salvarChave').textContent='Testando…';
+    try{const m=await escolherModelo(k);c.chave=k;c.modelo=m;save();toast('Chave funcionando! ✅');telaAjustes()}
+    catch(e){$('#salvarChave').textContent='Salvar e testar a chave';toast(e.message==='chave'?'Essa chave não funcionou. Confira se copiou inteira.':'Não consegui testar agora. Verifique a internet.',4000)}};
+  $('#tm').onclick=async()=>{$('#tmr').textContent='Fale alguma coisa…';try{const r=await ouvir({lang:'pt'});let t=r.texto;if(r.audio)t=await transcrever(r.audio,'pt');$('#tmr').textContent=t?'Ouvi: “'+t+'” ✅':'Não ouvi nada. Tente falar mais perto.'}catch(e){$('#tmr').textContent=e.message==='mic'?'Microfone bloqueado. Libere em Ajustes do iPhone › Safari › Microfone.':e.message==='semchave'?'Cadastre a chave da IA para usar o microfone neste aparelho.':'Não funcionou: '+e.message}};
+  $('#exp').onclick=()=>{const blob=new Blob([JSON.stringify({prog:S.prog,ultima:S.ultima,cfg:Object.assign({},S.cfg,{chave:''})})],{type:'application/json'});const f=new File([blob],'meu-ingles-progresso.json',{type:'application/json'});
+    if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f]}).catch(()=>{});else{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=f.name;a.click()}};
+  $('#imp').onclick=()=>$('#fileIn').click();
+  $('#tut').onclick=()=>ir(telaTutorial);
+}
+$('#fileIn').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!d.prog)throw 0;S.prog=d.prog;S.ultima=d.ultima;const k=S.cfg.chave;Object.assign(S.cfg,d.cfg||{});S.cfg.chave=k||S.cfg.chave;save();applyCfg();toast('Progresso restaurado ✅');inicio()}catch(err){toast('Arquivo inválido')}e.target.value=''};
+
+/* =================== INÍCIO =================== */
+inicio();
+if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+</script>
+</body>
+</html>
